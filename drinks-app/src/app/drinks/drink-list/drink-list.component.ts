@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DrinkDto, DrinkService, CategoryDTO } from './drink.service';
+import { DrinkDto, DrinkService, CategoryDTO } from '../drink.service';
 
 @Component({
   selector: 'drink-list',
@@ -21,7 +21,7 @@ export class DrinkListComponent implements OnInit {
   ngOnInit(): void {
     this.drinkService.getCategories().subscribe(response => {
       console.log(response);
-      this.categories = response});
+      this.categories = response; } );
   }
 
   public showByCategory(event: Event, categoryDto: CategoryDTO) {
@@ -29,7 +29,7 @@ export class DrinkListComponent implements OnInit {
     this.isActive = !this.isActive;
     this.drinks = [];
     this.selectedCategory = categoryDto;
-    this.drinkService.getByCategory(categoryDto.id).subscribe(response => {
+    this.drinkService.getByCategory(categoryDto.strCategory).subscribe(response => {
       console.log(response);
       this.drinks = response.map(data => ({ ...data, image: 'http://' + data.strDrinkThumb }));
     });

@@ -1,17 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DrinksModule } from './drinks/drinks.module';
 import { CommonModule } from '@angular/common';
-import { DrinkListComponent } from './drinks/drink-list.component';
-import { DrinkService } from './drinks/drink.service';
-
-import { AngularFireModule } from 'angularfire2';
-import { environment } from '../environments/environment';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { HttpInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDbService } from 'angular-in-memory-web-api';
+import { DrinkInMemoryDataService } from './drinks/drink-in-memory-data.service';
 
 @NgModule({
   declarations: [
@@ -21,11 +17,10 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     BrowserModule,
     CommonModule,
     HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule,
+    HttpInMemoryWebApiModule.forRoot(DrinkInMemoryDataService, { dataEncapsulation: false}),
     DrinksModule
   ],
-  providers: [DrinkService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
