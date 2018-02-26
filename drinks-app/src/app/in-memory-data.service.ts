@@ -1,8 +1,8 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { Observable } from 'rxjs/Observable';
 
-export class DrinkInMemoryDataService implements InMemoryDbService {
-    createDb(reqInfo): {} | Observable<{}> | Promise<{}> {
+export class InMemoryDataService implements InMemoryDbService {
+    createDb() {
         const categories = [
             { 'strCategory': 'Ordinary Drink' },
             { 'strCategory': 'Cocktail' },

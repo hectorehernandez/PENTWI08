@@ -1,1 +1,35 @@
-<drink-list></drink-list>
+<section class="container">
+    <div class="tile is-ancestor">
+        <div class="tile is-parent">
+            <article class="tile is-child notification is-success">
+                <h1 class="title">Drinks Menu</h1>
+            </article>
+        </div>
+    </div>
+</section>
+<div class="container">
+    <nav class="navbar is-transparent">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="https://bulma.io">
+                <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
+            </a>
+            <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <div id="navbarExampleTransparentExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="">Home</a>
+                <a class="navbar-item" routerLink="/dashboard">Dashboard</a>
+                <a class="navbar-item" routerLink="/categories">Categories</a>
+            </div>
+        </div>
+    </nav>
+</div>
+<router-outlet></router-outlet>
+
+
+<!-- <drink-list></drink-list> -->

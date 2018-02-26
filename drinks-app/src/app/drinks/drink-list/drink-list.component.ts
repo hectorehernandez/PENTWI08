@@ -1,41 +1,36 @@
-import { Component, OnInit } from '@angular/core';
-import { DrinkDto, DrinkService, CategoryDTO } from '../drink.service';
+import { Component, OnInit, Input } from '@angular/core';
+import { DrinkDto, DrinkService } from '../drink.service';
+import { CategoryDTO } from '../../categories/category.service';
 
 @Component({
-  selector: 'drink-list',
+  selector: 'app-drink-list',
   templateUrl: './drink-list.component.html',
   providers: [DrinkService]
 })
 export class DrinkListComponent implements OnInit {
 
-  public categories: CategoryDTO[];
   public drinks: DrinkDto[];
-  public isActive: boolean;
-  public categoryTitle: string;
-  public selectedCategory: CategoryDTO;
+  private _category: CategoryDTO;
+  @Input()
+  set category(category: CategoryDTO) {
+    this._category = category;
+    this.getDrinks();
+  }
+
+  get category(): CategoryDTO { return this._category; }
 
   constructor(private drinkService: DrinkService) {
-    this.categoryTitle = '';
   }
 
-  ngOnInit(): void {
-    this.drinkService.getCategories().subscribe(response => {
-      console.log(response);
-      this.categories = response; } );
+  ngOnInit() {
+    this.getDrinks();
   }
 
-  public showByCategory(event: Event, categoryDto: CategoryDTO) {
-    event.preventDefault();
-    this.isActive = !this.isActive;
+  public getDrinks() {
     this.drinks = [];
-    this.selectedCategory = categoryDto;
-    this.drinkService.getByCategory(categoryDto.strCategory).subscribe(response => {
+    this.drinkService.getByCategory(this._category.strCategory).subscribe(response => {
       console.log(response);
       this.drinks = response.map(data => ({ ...data, image: 'http://' + data.strDrinkThumb }));
     });
-  }
-
-  public toggleDropdown() {
-    this.isActive = !this.isActive;
   }
 }
