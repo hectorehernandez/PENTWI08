@@ -1,0 +1,10 @@
+<form [formGroup]="categoryForm" novalidate>
+  <div class="field has-addons">
+    <div class="control is-expanded">
+      <input class="input" type="text" placeholder="Name" formControlName="name">
+    </div>
+    <div class="control">
+      <button class="button is-primary" (click)="addButtonClicked()">Add</button>
+    </div>
+  </div>
+</form>

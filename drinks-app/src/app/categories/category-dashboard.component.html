@@ -1,0 +1,7 @@
+<section class="section">
+    <div class="container">
+        <app-category-form (saveCategory)="onSaveCategory($event)" (category)="selectedCategory"></app-category-form>
+        <app-category-list (selectedChanged)="categoryChanged($event)"></app-category-list>
+        
+    </div>
+</section>
