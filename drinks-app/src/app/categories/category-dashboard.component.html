@@ -1,7 +1,21 @@
 <section class="section">
-    <div class="container">
-        <app-category-form (saveCategory)="onSaveCategory($event)" (category)="selectedCategory"></app-category-form>
-        <app-category-list (selectedChanged)="categoryChanged($event)"></app-category-list>
-        
+  <div class="container">
+    <div class="columns">
+      <div class="column">
+        <div class="block">
+          <a class="button is-primary" (click)="addCategoryClicked()">Add New</a>
+        </div>
+      </div>
+      <div class="column">
+        <app-category-form *ngIf="selectedCategory" (categoryAdded)="onSaveCategory($event)" (categoryUpdated)="onSaveCategory($event)" [category]="selectedCategory"></app-category-form>
+      </div>
     </div>
+
+  <div class="notification is-success" *ngIf="showSuccessMessage">
+    <button class="delete" (click)="dismiss()"></button>
+    Changes saved successfully.
+  </div>
+
+  <app-category-list (selectedChanged)="categoryChanged($event)" (deleteClicked)="deleteCategory($event)" [reloadCategories]="reloadCategories" [displayAsDropdown]="false"></app-category-list>
+  </div>
 </section>

@@ -4,19 +4,18 @@ import { Observable } from 'rxjs/Observable';
 export class InMemoryDataService implements InMemoryDbService {
     createDb() {
         const categories = [
-            { 'strCategory': 'Ordinary Drink' },
-            { 'strCategory': 'Cocktail' },
-            { 'strCategory': 'Milk / Float / Shake' },
-            { 'strCategory': 'Other/Unknown' },
-            { 'strCategory': 'Cocoa' },
-            { 'strCategory': 'Shot' },
-            { 'strCategory': 'Coffee / Tea' },
-            { 'strCategory': 'Homemade Liqueur' },
-            { 'strCategory': 'Punch / Party Drink' },
-            { 'strCategory': 'Beer' },
-            { 'strCategory': 'Soft Drink / Soda' }
+            { 'id': 1, 'strCategory': 'Ordinary Drink' },
+            { 'id': 2, 'strCategory': 'Cocktail' },
+            { 'id': 3, 'strCategory': 'Milk / Float / Shake' },
+            { 'id': 4, 'strCategory': 'Other/Unknown' },
+            { 'id': 5, 'strCategory': 'Cocoa' },
+            { 'id': 6, 'strCategory': 'Shot' },
+            { 'id': 7, 'strCategory': 'Coffee / Tea' },
+            { 'id': 8, 'strCategory': 'Homemade Liqueur' },
+            { 'id': 9, 'strCategory': 'Punch / Party Drink' },
+            { 'id': 10, 'strCategory': 'Beer' },
+            { 'id': 11, 'strCategory': 'Soft Drink / Soda' }
         ];
-
         const drinks = [
             {
                 'strCategory': 'Cocktail',

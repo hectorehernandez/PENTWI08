@@ -8,7 +8,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class CategoryFormComponent implements OnChanges  {
     @Input() category: CategoryDTO;
-    @Output() saveCategory = new EventEmitter<CategoryDTO>();
+
+    @Output() categoryAdded = new EventEmitter<CategoryDTO>();
+    @Output() categoryUpdated = new EventEmitter<CategoryDTO>();
     public categoryForm: FormGroup;
 
     constructor(private formBuilder: FormBuilder) {
@@ -17,8 +19,8 @@ export class CategoryFormComponent implements OnChanges  {
 
     ngOnChanges() {
         console.log('category from parent: ' + this.category);
-        this.categoryForm.setValue({
-            name: this.category.strCategory
+        this.categoryForm.reset({
+            name: this.category ? this.category.strCategory : ''
         });
     }
 
@@ -28,11 +30,18 @@ export class CategoryFormComponent implements OnChanges  {
         });
     }
 
-    public addButtonClicked() {
+    public saveClicked() {
         const formModel = this.categoryForm.value;
 
-        const categoryDTO = new CategoryDTO();
+        const categoryDTO = Object.assign({}, this.category);
         categoryDTO.strCategory = formModel.name;
-        this.saveCategory.emit(categoryDTO);
+
+        if (categoryDTO.id > 0) {
+            this.categoryUpdated.emit(categoryDTO);
+        } else {
+            this.categoryAdded.emit(categoryDTO);
+        }
+        this.category = null;
+        this.categoryForm.reset();
     }
 }

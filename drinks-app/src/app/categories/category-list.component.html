@@ -1,17 +1,32 @@
-<div class="container">
-    <div class="dropdown" [ngClass]="isActive && 'is-active'">
-        <div class="dropdown-trigger" (click)="toggleDropdown()">
-            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
-            <span>Select a Category</span>
-            <span class="icon is-small">
-                <i class="fas fa-angle-down" aria-hidden="true"></i>
-            </span>
-        </button>
-        </div>
-        <div class="dropdown-menu" id="dropdown-menu" role="menu">
-            <div class="dropdown-content">
-                <a href="#" class="dropdown-item" *ngFor="let category of categories" (click)="categoryClicked($event,category)">{{category.strCategory}}</a>
-            </div>
-        </div>
+<div class="container" *ngIf="displayAsDropdown">
+  <div class="dropdown" [ngClass]="isActive && 'is-active'">
+    <div class="dropdown-trigger" (click)="toggleDropdown()">
+      <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+        <span>Select a Category</span>
+        <span class="icon is-small">
+          <i class="fas fa-angle-down" aria-hidden="true"></i>
+        </span>
+      </button>
     </div>
+    <div class="dropdown-menu" id="dropdown-menu" role="menu">
+      <div class="dropdown-content">
+        <a href="#" class="dropdown-item" *ngFor="let category of categories" (click)="categorySelected($event,category)">{{category.strCategory}}</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="!displayAsDropdown">
+  <h1 class="title">Categories</h1>
+  <div class="container">
+    <div class="columns is-variable" *ngFor="let category of categories">
+      <div [class]="selectedCategory === category ? 'column is-3 notification is-warning' : 'column is-3'">
+        {{category.strCategory}}
+      </div>
+      <div class="column">
+        <button class="button is-primary" (click)="categorySelected($event, category)">Edit</button>
+        <button class="button is-danger" (click)="onDeleteClick(category)">Delete</button>
+      </div>
+    </div>
+  </div>
 </div>

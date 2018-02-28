@@ -1,4 +1,4 @@
 <section class="section">
-    <app-category-list (selectedChanged)="categoryChanged($event)"></app-category-list>
-    <app-drink-list [category]="selectedCategory" *ngIf="selectedCategory"></app-drink-list>
+    <app-category-list (selectedChanged)="categoryChanged($event)" [displayAsDropdown]="true"></app-category-list>
+    <app-drink-list [category]="selectedCategory" *ngIf="selectedCategory" ></app-drink-list>
 </section>
